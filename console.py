@@ -119,11 +119,10 @@ class HBNBCommand(cmd.Cmd):
         Exceptions:
             SyntaxError: when no args given
             NameError: when there is no object with the name
-
         """
         try:
             if not args:
-                raise SyntaxError()
+                raise SyntaxError("** class name missing **")
 
             splittedArgs = args.split(" ")
             inst = eval("{}()".format(splittedArgs[0]))
