@@ -9,7 +9,7 @@ env.hosts = ['52.87.230.189', '18.234.80.136']
 
 def do_pack():
     """
-    The do-pack function to be used
+    The do_pack function to be used
     """
 
     d = datetime.now()
