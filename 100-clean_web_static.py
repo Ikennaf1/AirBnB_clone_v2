@@ -8,15 +8,17 @@ env.user = "ubuntu"
 
 
 def do_clean(number=0):
-    """ CLEANS """
+    """
+    Cleans up
+    """
 
-    number = int(number)
+    num = int(number)
 
-    if number == 0:
-        number = 2
+    if num == 0:
+        num = 2
     else:
-        number += 1
+        num += 1
 
-    local('cd versions ; ls -t | tail -n +{} | xargs rm -rf'.format(number))
+    local('cd versions ; ls -t | tail -n +{} | xargs rm -rf'.format(num))
     path = '/data/web_static/releases'
-    run('cd {} ; ls -t | tail -n +{} | xargs rm -rf'.format(path, number))
+    run('cd {} ; ls -t | tail -n +{} | xargs rm -rf'.format(path, num))
