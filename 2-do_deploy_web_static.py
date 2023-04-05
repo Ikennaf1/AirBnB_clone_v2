@@ -4,12 +4,12 @@ from fabric.api import *
 from os import path
 
 
-env.hosts = ['35.229.93.37', '54.196.213.127']
+env.hosts = ['52.87.230.189', '18.234.80.136']
 
 
 def do_pack():
-    """Generates a .tgz archive from the contents
-    of the web_static folder of this repository.
+    """
+    The do-pack function to be used
     """
 
     d = datetime.now()
@@ -19,24 +19,25 @@ def do_pack():
     local("tar -czvf versions/web_static_{}.tgz web_static".format(now))
 
 
-def do_deploy(archive_path):
-    """Distributes an .tgz archive through web servers
+def do_deploy(tgz_path):
+    """
+    A Fabric script that distributes an archive to your web servers
     """
 
-    if path.exists(archive_path):
-        archive = archive_path.split('/')[1]
-        a_path = "/tmp/{}".format(archive)
-        folder = archive.split('.')[0]
-        f_path = "/data/web_static/releases/{}/".format(folder)
+    if path.exists(tgz_path):
+        archive = tgz_path.split('/')[1]
+        t_path = "/tmp/{}".format(archive)
+        directory = archive.split('.')[0]
+        d_path = "/data/web_static/releases/{}/".format(directory)
 
-        put(archive_path, a_path)
-        run("mkdir -p {}".format(f_path))
-        run("tar -xzf {} -C {}".format(a_path, f_path))
-        run("rm {}".format(a_path))
-        run("mv -f {}web_static/* {}".format(f_path, f_path))
-        run("rm -rf {}web_static".format(f_path))
+        put(tgz_path, t_path)
+        run("mkdir -p {}".format(d_path))
+        run("tar -xzf {} -C {}".format(t_path, d_path))
+        run("rm {}".format(t_path))
+        run("mv -f {}web_static/* {}".format(d_path, d_path))
+        run("rm -rf {}web_static".format(d_path))
         run("rm -rf /data/web_static/current")
-        run("ln -s {} /data/web_static/current".format(f_path))
+        run("ln -s {} /data/web_static/current".format(d_path))
 
         return True
 
