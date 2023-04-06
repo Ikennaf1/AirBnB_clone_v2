@@ -17,7 +17,7 @@ mkdir -p /data/web_static/releases/test/
 mkdir -p /data/web_static/shared/
 
 # Create HTML file '/data/web_static/releases/test/index.html', to test Nginx configuration
-printf "<html>\n\t<head>\n\t</head>\n\t<body>\n\t\tHello World!\n\t</body>\n</html>\n" | 
+printf "<html>\n\t<head>\n\t</head>\n\t<body>\n\t\tHolberton School\n\t</body>\n</html>\n" | 
 tee /data/web_static/releases/test/index.html 
 
 # Create symbolic link of '/data/web_static/current' folder to
